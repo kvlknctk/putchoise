@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .renk {
+            color: black;
+            background: blue;
+        }
+    </style>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery.toast.min.css" rel="stylesheet" type="text/css"/>
+
+
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="/js/jquery.toast.min.js"></script>
+    <script>
+
+
+
+        function putChoise(tcno, value, el) {
+
+            var volk = el;
+
+
+            $.ajax({
+                method: "POST",
+                url: "sandikgorevli_v3.php",
+                data: {tcno: tcno, choise: value},
+                beforeSend: function (){
+                    console.log("İşlem devam ediyor.. ");
+                    $(volk).html("<i class='fa fa-circle-o-notch fa-spin'></i>");
+                }
+            }).then(function (msg) {
+                $(volk).closest("tr").addClass('renk');
+
+                console.log(msg);
+                console.log("seçmenin işlemi tamamlandı. ");
+
+                $(volk).html("V");
+                $(volk).addClass("renk");
+
+
+             /*   $.toast({
+                    text : "Oy kullandırıldı.",
+                    showHideTransition : 'slide',  // It can be plain, fade or slide
+                    bgColor : 'green',              // Background color for toast
+                    textColor : '#eee',            // text color
+                    allowToastClose : false,       // Show the close button or not
+                    hideAfter : 5000,              // `false` to make it sticky or time in miliseconds to hide after
+                    stack : 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
+                    textAlign : 'left',            // Alignment of text i.e. left, right, center
+                    position : 'top-center'       // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
+                })*/
+
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+
+
+<table>
+    <tr>
+        <th>İşlem</th>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="putChoise('43571062626', 1, this)" class="secmen" >X</button>
+        </td>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="putChoise('43571062625', 1, this)" class="secmen">X</button>
+        </td>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="putChoise('43571062626', 1, this)" class="secmen">X</button>
+        </td>
+        <td>Ernst Handel</td>
+        <td>Roland Mendel</td>
+        <td>Austria</td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="putChoise('43571062627', 1, this)" class="secmen">X</button>
+        </td>
+        <td>Island Trading</td>
+        <td>Helen Bennett</td>
+        <td>UK</td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="putChoise('43571062628', 1, this)" class="secmen">X</button>
+        </td>
+        <td>Laughing Bacchus Winecellars</td>
+        <td>Yoshi Tannamuri</td>
+        <td>Canada</td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="putChoise('43571062629', 1,this)" class="secmen">X</button>
+        </td>
+        <td>Magazzini Alimentari Riuniti</td>
+        <td>Giovanni Rovelli</td>
+        <td>Italy</td>
+    </tr>
+</table>
+
+
+</body>
+</html>
